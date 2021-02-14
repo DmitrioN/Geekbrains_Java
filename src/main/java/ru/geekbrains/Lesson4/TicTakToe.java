@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class TicTakToe {
     //Поле
     public static char[][] map;
-    public static final int SIZE = 3;
-    public static final int DOT_TO_WIN = 3;
+    public static final int SIZE = 5;
+    public static final int DOTS_TO_WIN = 3;
 
 
     // Ячейки поля
@@ -44,75 +44,80 @@ public class TicTakToe {
         System.out.println("Игра закончена");
     }
 
-    public static boolean checkWin (char symb) {
-        if (map [0][0]  == symb && map [0][1] == symb && map [0][2] == symb) return true;
-        if (map [1][0]  == symb && map [1][1] == symb && map [1][2] == symb) return true;
-        if (map [2][0]  == symb && map [2][1] == symb && map [2][2] == symb) return true;
-        if (map [0][0]  == symb && map [1][0] == symb && map [2][0] == symb) return true;
-        if (map [0][1]  == symb && map [1][1] == symb && map [2][1] == symb) return true;
-        if (map [0][2]  == symb && map [1][1] == symb && map [2][2] == symb) return true;
-        if (map [0][0]  == symb && map [1][1] == symb && map [2][2] == symb) return true;
-        if (map [2][0]  == symb && map [1][1] == symb && map [0][2] == symb) return true;
+    public static boolean checkWin(char dot) {
+        for (int i = 0; i < 3; i++)
+            if ((map[i][0] == dot && map[i][1] == dot &&
+                    map[i][2] == dot) ||
+                    (map[0][i] == dot && map[1][i] == dot &&
+                            map[2][i] == dot))
+                return true;
+        if ((map[0][0] == dot && map[1][1] == dot &&
+                map[2][2] == dot) ||
+                (map[2][0] == dot && map[1][1] == dot &&
+                        map[0][2] == dot))
+            return true;
         return false;
     }
+    
+        public static boolean isMapFull () {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (map[i][j] == DOT_EMPTY) return false;
+                }
+            }
+            return true;
+        }
 
-    public static boolean isMapFull() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (map[i][j] == DOT_EMPTY) return false;
+        public static void aiTurn () {
+            int x, y;
+            do {
+                x = rand.nextInt(SIZE);
+                y = rand.nextInt(SIZE);
+            } while (!isCellValid(x, y));
+            System.out.println("Компьютер проходил точку " + (x + 1) + " " + (y + 1));
+            map[y][x] = DOT_O;
+        }
+
+        public static void humanTurn () {
+            int x, y;
+            do {
+                System.out.println("Введите координаты в формате X Y");
+                x = sc.nextInt() - 1;
+                y = sc.nextInt() - 1;
+            } while (!isCellValid(x, y));
+            map[y][x] = DOT_X;
+        }
+
+        //Проверка на валидность входящих данных
+        public static boolean isCellValid ( int x, int y){
+            if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
+            if (map[y][x] == DOT_EMPTY) return true;
+            return false;
+        }
+
+        private static void initMap () {
+            map = new char[SIZE][SIZE];
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    map[i][j] = DOT_EMPTY;
+                }
             }
         }
-        return true;
-    }
 
-    public static void aiTurn() {
-        int x, y;
-        do {
-            x = rand.nextInt(SIZE);
-            y = rand.nextInt(SIZE);
-        } while (!isCellValid(x,y));
-        System.out.println("Компьютер проходил точку " + (x + 1) + " " + (y + 1));
-        map[y][x] = DOT_O;
-    }
-
-    public static void humanTurn() {
-        int x,y;
-        do {
-            System.out.println("Введите координаты в формате X Y");
-            x = sc.nextInt() - 1;
-            y = sc.nextInt() - 1;
-        } while (!isCellValid(x, y));
-        map [y][x] = DOT_X;
-    }
-
-    //
-    public static boolean isCellValid(int x, int y) {
-        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
-        if (map[y][x] == DOT_EMPTY) return true;
-        return false;
-    }
-
-    private static void initMap() {
-        map = new  char[SIZE][SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                map[i][j] = DOT_EMPTY;
+        //метод, отображающий текущее состояние игровой таблицы
+        public static void printMap () {
+            for (int i = 0; i <= SIZE; i++) {
+                System.out.print(i + " ");
             }
-        }
-    }
-
-    public static void printMap() {
-        for (int i = 0; i <= SIZE; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i = 0; i < SIZE; i++) {
-            System.out.print((i + 1) + " ");
-            for (int j = 0; j < SIZE; j++) {
-                System.out.print(map[i][j] + " ");
+            System.out.println();
+            for (int i = 0; i < SIZE; i++) {
+                System.out.print((i + 1) + " ");
+                for (int j = 0; j < SIZE; j++) {
+                    System.out.print(map[i][j] + " ");
+                }
+                System.out.println();
             }
+            System.out.println();
         }
-         System.out.println();
     }
-}
 
