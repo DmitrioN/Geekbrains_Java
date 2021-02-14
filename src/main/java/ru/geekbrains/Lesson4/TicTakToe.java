@@ -6,8 +6,6 @@ public class TicTakToe {
     //Поле
     public static char[][] map;
     public static final int SIZE = 5;
-    public static final int DOTS_TO_WIN = 3;
-
 
     // Ячейки поля
     private static final char DOT_EMPTY = '*';
@@ -44,21 +42,17 @@ public class TicTakToe {
         System.out.println("Игра закончена");
     }
 
-    public static boolean checkWin(char dot) {
-        for (int i = 0; i < 3; i++)
-            if ((map[i][0] == dot && map[i][1] == dot &&
-                    map[i][2] == dot) ||
-                    (map[0][i] == dot && map[1][i] == dot &&
-                            map[2][i] == dot))
+    public static boolean checkWin(char symb) {
+        for (int i = 0; i < 5; i++)
+            if ((map[i][0] == symb && map[i][1] == symb && map[i][2] == symb && map[i][3] == symb && map[i][4] == symb) ||
+                    (map[0][i] == symb && map[1][i] == symb && map[2][i] == symb && map[3][i] == symb && map[4][i] == symb))
                 return true;
-        if ((map[0][0] == dot && map[1][1] == dot &&
-                map[2][2] == dot) ||
-                (map[2][0] == dot && map[1][1] == dot &&
-                        map[0][2] == dot))
+        if ((map[0][0] == symb && map[1][1] == symb && map[2][2] == symb && map[3][3] == symb && map[4][4] == symb) ||
+                (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb && map[0][3] == symb && map[0][4] == symb))
             return true;
         return false;
     }
-    
+
         public static boolean isMapFull () {
             for (int i = 0; i < SIZE; i++) {
                 for (int j = 0; j < SIZE; j++) {
