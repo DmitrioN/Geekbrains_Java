@@ -10,6 +10,12 @@ public class Lesson5 {
         EmployeesArray[3] = new Employees(4, "Журавлев Леонид Константинович", "rankor4@mail.ru", "89041767775", "Журналист", 60000, 30);
         EmployeesArray[4] = new Employees(5, "Самсонов Петр Лаврентьевич", "rankor5@mail.ru", "89041767778", "Архитектор", 200000, 20);
 
+        JTable table = new JTable(new TableModel());
+        dt.Columns.Add("Dosage", typeof(int));
+        dt.Columns.Add("Drug", typeof(string));
+        dt.Columns.Add("Diagnosis", typeof(string));
+
+        dt.Rows.Add(25, "Drug A", "Disease A");
         for (Employees item : EmployeesArray) {
             if (item.getAge() > 40) item.info();
         }
