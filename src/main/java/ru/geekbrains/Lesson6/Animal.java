@@ -1,13 +1,25 @@
 package ru.geekbrains.Lesson6;
 
 public class Animal {
-    private String name;
+    public String name;
+    public static int animalCount = 0;
 
-    public  void Run() {
-        System.out.println("Животное: " + name + " прыгнуло");
+    public Animal(String name){
+        this.name = name;
+        animalCount++;
     }
 
-    public  void ToSwim() {
-        System.out.println("Животное: " + name + " плывет");
+    public  void run(int dist) {
+        System.out.println("Животное: " + name + " прыгнуло на " + dist + " метров.");
+    }
+
+    public  void toSwim(int dist) {
+        System.out.println("Животное: " + name + " плывет" + dist + " метров.");
+    }
+
+    public void getCounterAnimal() {
+        System.out.println("Количество собак = " + Dog.getCounterDog() + ".");
+        System.out.println("Количество котов = " + Cat.getCounterCat() + ".");
+        System.out.println("Количество животных = " + animalCount + ".");
     }
 }

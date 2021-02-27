@@ -1,6 +1,6 @@
 package ru.geekbrains.Lesson5;
 
-public class Employees {
+public class Employee {
     private static int ID = 0;
     private static String FIO = "";
     private static String email = "";
@@ -9,14 +9,14 @@ public class Employees {
     private static int salary = 0;
     private static int age = 0;
 
-    public Employees(int ID, String FIO, String email, String numberPhone, String position, int salary, int age) {
-        this.ID = ID;
-        this.FIO = FIO;
-        this.email = email;
-        this.numberPhone = numberPhone;
-        this.position = position;
-        this.salary = salary;
-        this.age = age;
+    public Employee(int ID, String FIO, String email, String numberPhone, String position, int salary, int age) {
+        ID = ID;
+        FIO = FIO;
+        email = email;
+        numberPhone = numberPhone;
+        position = position;
+        salary = salary;
+        age = age;
     }
 
     public int getAge() {
