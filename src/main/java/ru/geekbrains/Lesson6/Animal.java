@@ -2,7 +2,7 @@ package ru.geekbrains.Lesson6;
 
 public class Animal {
     public String name;
-    public static int animalCount = 0;
+    private static int animalCount = 0;
 
     public Animal(String name){
         this.name = name;

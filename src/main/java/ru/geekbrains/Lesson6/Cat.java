@@ -4,7 +4,7 @@ public class Cat extends Animal {
     private static int catsCount = 0; //Количество котов
     private static final int maxDistance = 200; //Максимальное количество метров, которое может пробежать кот
 
-    public Cat(String name){
+    public Cat(String name) {
         super(name);
         catsCount++;
         System.out.println("Новый кот, по имени - " + name + ".");
@@ -24,7 +24,7 @@ public class Cat extends Animal {
         System.out.println("Кот " + name + " не умеет плавать");
     }
 
-     static int getCounterCat (){
+    static int getCounterCat() {
         return catsCount;
     }
 }
